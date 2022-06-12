@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int minPathCost(vector<vector<int>>& grid, vector<vector<int>>& moveCost) { 
+        int n=grid.size();
+        int m=grid[0].size();
+        int v[n][m];
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+                v[i][j]=grid[i][j];
+        }
+        for(int i=n-2;i>=0;i--)
+        {  
+           
+            for(int j=0;j<m;j++)
+            {   
+                 int cost=INT_MAX;
+            int ma=INT_MAX;
+                int y=grid[i][j];
+                for(int k=0;k<m;k++)
+                { 
+                    cost=min(cost,moveCost[grid[i][j]][k]+v[i+1][k]+y);
+                }
+                v[i][j]=cost;
+            
+                
+                
+                
+            }
+            
+        }
+        int ans=INT_MAX;
+        for(int i=0;i<m;i++)
+            ans=min(ans,v[0][i]);
+        return ans;
+            
+        
+        
+    }
+};
